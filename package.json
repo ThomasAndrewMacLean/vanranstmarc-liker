@@ -1,0 +1,39 @@
+{
+    "name": "vanranstmarc-liker",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint --fix",
+        "step1": "claudia generate-serverless-express-proxy --region eu-west-1 --express-module app  --profile claudiaJS",
+        "step2": "claudia create --set-env-from-json .env.json --handler lambda.handler --deploy-proxy-api --region eu-west-1  --profile claudiaJS",
+        "update": "claudia update --set-env-from-json .env.json --profile claudiaJS"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ThomasAndrewMacLean/vanranstmarc-liker.git"
+    },
+    "keywords": [],
+    "author": "Thomas MacLean <hello@thomasmaclean.be> (https://thomasmaclean.be)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ThomasAndrewMacLean/vanranstmarc-liker/issues"
+    },
+    "homepage": "https://github.com/ThomasAndrewMacLean/vanranstmarc-liker#readme",
+    "dependencies": {
+        "aws-serverless-express": "^3.3.6",
+        "body-parser": "^1.19.0",
+        "express": "^4.17.1",
+        "twit": "^2.2.11",
+        "volleyball": "^1.5.1"
+    },
+    "devDependencies": {
+        "claudia": "^5.5.0",
+        "eslint": "^5.8.0",
+        "eslint-config-airbnb": "^17.1.0",
+        "eslint-config-prettier": "^4.3.0",
+        "eslint-plugin-prettier": "^3.1.0",
+        "prettier": "^1.17.1"
+    }
+}

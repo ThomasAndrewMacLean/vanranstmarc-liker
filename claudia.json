@@ -1,0 +1,10 @@
+{
+  "lambda": {
+    "role": "vanranstmarc-liker-executor",
+    "name": "vanranstmarc-liker",
+    "region": "eu-west-1"
+  },
+  "api": {
+    "id": "wep3da9j97"
+  }
+}
