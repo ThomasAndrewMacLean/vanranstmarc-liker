@@ -21,22 +21,26 @@ app.use(
     })
 );
 
-const username = 'vanranstmarc';
+const usernames = ['vanranstmarc', 'implosionblue'];
 
 app.get('/tweets', (req, res) => {
-    return T.get('statuses/user_timeline', {
-        screen_name: username,
-        count: 25,
-        tweet_mode: 'extended'
-    }).then(tweets => {
-        tweets.data
-            .filter(tweet => !tweet.favorited)
-            .forEach(async tweet => {
-                await T.post('favorites/create', { id: tweet.id_str });
-            });
+    return Promise.all(
+        usernames.map(username => {
+            return T.get('statuses/user_timeline', {
+                screen_name: username,
+                count: 25,
+                tweet_mode: 'extended'
+            }).then(tweets => {
+                tweets.data
+                    .filter(tweet => !tweet.favorited)
+                    .forEach(async tweet => {
+                        await T.post('favorites/create', { id: tweet.id_str });
+                    });
 
-        res.send('🎗helfieOpMnSmelfie');
-    });
+                res.send('🎗helfieOpMnSmelfie');
+            });
+        })
+    );
 });
 
 module.exports = app;
